@@ -63,49 +63,6 @@ public:
             std::cout << i << ": " << playlists_[i].name_ << std::endl;
         }
 
-        int playlistChoice;
-        std::cout << "Choose a playlist: ";
-        std::cin >> playlistChoice;
 
-        if (playlistChoice < 0 || playlistChoice >= playlists_.size()) {
-            std::cout << "Invalid playlist choice." << std::endl;
-            return;
-        }
-
-        const Playlist& selectedPlaylist = playlists_[playlistChoice];
-        selectedPlaylist.printPlaylist();
-
-        int songChoice;
-        std::cout << "Choose a song from the playlist: ";
-        std::cin >> songChoice;
-
-        if (songChoice < 0 || songChoice >= selectedPlaylist.songs_.size()) {
-            std::cout << "Invalid song choice." << std::endl;
-            return;
-        }
-
-        const Song& selectedSong = selectedPlaylist.songs_[songChoice];
-        std::cout << "Playing: " << selectedSong.getTitle() << std::endl;
-        PlaySound(TEXT("song.wav"), NULL, SND_FILENAME | SND_ASYNC);
-    }
-
-    void pause() const {
-        PlaySound(NULL, NULL, SND_ASYNC);  // Stop the playback
-        std::cout << "Pausing the song." << std::endl;
-    }
-
-    void changeVolume(int volume) {
-        // Add your implementation to adjust the volume
-        std::cout << "Changing volume to: " << volume << std::endl;
-    }
-
-    static std::vector<Playlist> playlists_;
-
-private:
-    std::string name_;
-    std::vector<Song> songs_;
-};
-
-std::vector<Playlist> Playlist::playlists_;
 
 
