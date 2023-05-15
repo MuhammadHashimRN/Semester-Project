@@ -123,3 +123,73 @@ private:
 };
 
 std::vector<Playlist> Playlist::playlists_;
+int main() {
+    
+        Playlist::playlists_.push_back(Playlist("My Playlist"));
+
+    int choice;
+    while (true) {
+        std::cout << "Menu:" << std::endl;
+        std::cout << "1. Add Song" << std::endl;
+        std::cout << "2. Remove Song" << std::endl;
+        std::cout << "3. Print Playlist" << std::endl;
+        std::cout << "4. Play Song" << std::endl;
+        std::cout << "5. Pause Song" << std::endl;
+        std::cout << "6. Change Volume" << std::endl;
+        std::cout << "7. Exit" << std::endl;
+
+        std::cout << "Enter your choice: ";
+        std::cin >> choice;
+
+        switch (choice) {
+        case 1: {
+            std::string title, artist;
+            std::cout << "Enter song title: ";
+            std::cin.ignore();
+            std::getline(std::cin, title);
+            std::cout << "Enter artist name: ";
+            std::getline(std::cin, artist);
+
+            Song song(title, artist);
+            Playlist::playlists_[0].addSong(song);
+            break;
+        }
+        case 2: {
+            std::string title, artist;
+            std::cout << "Enter song title: ";
+            std::cin.ignore();
+            std::getline(std::cin, title);
+            std::cout << "Enter artist name: ";
+            std::getline(std::cin, artist);
+
+            Song song(title, artist);
+            Playlist::playlists_[0].removeSong(song);
+            break;
+        }
+        case 3:
+            Playlist::playlists_[0].printPlaylist();
+            break;
+        case 4:
+            Playlist::playlists_[0].play();
+            break;
+        case 5:
+            Playlist::playlists_[0].pause();
+            break;
+        case 6: {
+            int volume;
+            std::cout << "Enter volume level: ";
+            std::cin >> volume;
+            Playlist::playlists_[0].changeVolume(volume);
+            break;
+        }
+        case 7:
+            std::cout << "Exiting the program." << std::endl;
+            return 0;
+        default:
+            std::cout << "Invalid choice. Please try again." << std::endl;
+            break;
+        }
+    }
+
+    return 0;
+}
